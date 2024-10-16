@@ -10,6 +10,7 @@ from huggingface_hub import HfApi
 from demo import LoraTrainingArguments, train_lora
 from utils.constants import model2base_model, model2size
 from utils.flock_api import get_task, submit_task
+from utils.gpu_utils import get_gpu_type
 
 HF_USERNAME = os.environ["HF_USERNAME"]
 
@@ -55,23 +56,36 @@ if __name__ == "__main__":
             continue
 
         # generate a random repo id based on timestamp
-        hg_repo_id = f"{model_id.replace('/', '-')}-" + str(int(time.time()))
+        gpu_type = get_gpu_type()
 
         try:
             logger.info("Start to push the lora weight to the hub...")
             api = HfApi(token=os.environ["HF_TOKEN"])
-            api.create_repo(
-                f"{HF_USERNAME}/{hg_repo_id}",
-                repo_type="model",
-            )
-            api.upload_folder(
+            repo_name = f"{HF_USERNAME}/task-{task_id}-{model_id.replace('/', '-')}"
+            # check whether the repo exists
+            try:
+                api.create_repo(
+                    repo_name,
+                    exist_ok=False,
+                    repo_type="model",
+                )
+            except Exception as e:
+                logger.info(
+                    f"Repo {repo_name} already exists. Will commit the new version."
+                )
+
+            commit_message = api.upload_folder(
                 folder_path="outputs",
-                repo_id=f"{HF_USERNAME}/{hg_repo_id}",
+                repo_id=repo_name,
                 repo_type="model",
             )
+            # get commit hash
+            commit_hash = commit_message.oid
+            logger.info(f"Commit hash: {commit_hash}")
+            logger.info(f"Repo name: {repo_name}")
             # submit
             submit_task(
-                task_id, f"{HF_USERNAME}/{hg_repo_id}", model2base_model[model_id]
+                task_id, repo_name, model2base_model[model_id], gpu_type, commit_hash
             )
             logger.info("Task submitted successfully")
         except Exception as e:
