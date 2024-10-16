@@ -18,7 +18,7 @@ Qwen/Qwen1.5-1.8B:
   per_device_train_batch_size: 2
   gradient_accumulation_steps: 22
   num_train_epochs: 16
-  lora_rank: 12
+  lora_rank: 16
   lora_alpha: 34
   lora_dropout: 1
 
@@ -34,7 +34,7 @@ google/gemma-2b:
   per_device_train_batch_size: 2
   gradient_accumulation_steps: 32
   num_train_epochs: 16
-  lora_rank: 12
+  lora_rank: 16
   lora_alpha: 34
   lora_dropout: 1
 
