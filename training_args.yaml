@@ -15,12 +15,12 @@ meta-llama/Meta-Llama-3-8B:
   lora_dropout: 0.1
 
 Qwen/Qwen1.5-1.8B:
-  per_device_train_batch_size: 2
-  gradient_accumulation_steps: 22
-  num_train_epochs: 16
-  lora_rank: 16
-  lora_alpha: 34
-  lora_dropout: 1
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 16
+  num_train_epochs: 8
+  lora_rank: 8
+  lora_alpha: 32
+  lora_dropout: 0.5
 
 Qwen/Qwen1.5-7B:
   per_device_train_batch_size: 1
@@ -31,12 +31,12 @@ Qwen/Qwen1.5-7B:
   lora_dropout: 0.1
 
 google/gemma-2b:
-  per_device_train_batch_size: 2
-  gradient_accumulation_steps: 32
-  num_train_epochs: 16
-  lora_rank: 16
-  lora_alpha: 34
-  lora_dropout: 1
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 16
+  num_train_epochs: 8
+  lora_rank: 8
+  lora_alpha: 32
+  lora_dropout: 0.5
 
 google/gemma-7b:
   per_device_train_batch_size: 1
