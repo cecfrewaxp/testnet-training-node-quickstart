@@ -1,3 +1,4 @@
+# 确保 model2template 字典包含所有支持的 model_id
 model2template = {
     'Qwen/Qwen2.5-3B': {
         "system_format": "<s>[SYS]{content}[/SYS]",
