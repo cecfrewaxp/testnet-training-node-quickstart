@@ -34,7 +34,7 @@ def validate_base_model(base_model):
         raise ValueError(f"Invalid base_model: {base_model}. Expected one of {valid_base_models}.")
 
 def train_lora(
-    model_id: str, context_length: int, training_args: LoraTrainingArguments
+    model_id: str, context_length: int, training_args: LoraTrainingArguments, revision: str
 ):
     base_model = extract_base_model(model_id)
     validate_base_model(base_model)
@@ -79,6 +79,7 @@ def train_lora(
         quantization_config=bnb_config,
         device_map={"": 0},
         token=os.environ["HF_TOKEN"],
+        revision=revision,
     )
 
     # Load dataset
@@ -134,3 +135,18 @@ model2template = {
     },
     # 添加其他模型模板
 }
+
+# 调用 train_lora 函数时，确保传入 revision 参数
+train_lora(
+    model_id="Qwen/Qwen2.5-3B",
+    context_length=4096,
+    training_args=LoraTrainingArguments(
+        per_device_train_batch_size=2,
+        gradient_accumulation_steps=8,
+        num_train_epochs=3,
+        lora_rank=8,
+        lora_alpha=16,
+        lora_dropout=0.1,
+    ),
+    revision="main"  # 指定 revision 参数
+)
