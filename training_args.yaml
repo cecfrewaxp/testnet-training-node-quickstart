@@ -6,12 +6,4 @@ Qwen/Qwen2.5-3B:
   lora_alpha: 1
   lora_dropout: 0.01
 
-Qwen/Qwen2.5-3B-Instruct:
-  per_device_train_batch_size: 1
-  gradient_accumulation_steps: 8
-  num_train_epochs: 12
-  lora_rank: 8
-  lora_alpha: 16
-  lora_dropout: 0.1
-
 
