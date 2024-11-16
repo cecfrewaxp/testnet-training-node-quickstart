@@ -10,6 +10,10 @@ from dataset import SFTDataCollator, SFTDataset
 from merge import merge_lora_to_base_model
 from utils.constants import model2template
 
+# 定义预期列表
+valid_base_models = [
+    'llama2', 'llama3', 'qwen1.5', 'yi', 'mistral', 'mixtral', 'gemma', 'zephyr', 'phi3', 'qwen2.5'
+]
 
 @dataclass
 class LoraTrainingArguments:
@@ -20,10 +24,14 @@ class LoraTrainingArguments:
     lora_alpha: int
     lora_dropout: int
 
+def validate_base_model(model_id):
+    if model_id not in valid_base_models:
+        raise ValueError(f"Invalid model_id: {model_id}. Expected one of {valid_base_models}.")
 
 def train_lora(
     model_id: str, context_length: int, training_args: LoraTrainingArguments
 ):
+    validate_base_model(model_id)
     assert model_id in model2template, f"model_id {model_id} not supported"
     lora_config = LoraConfig(
         r=training_args.lora_rank,
