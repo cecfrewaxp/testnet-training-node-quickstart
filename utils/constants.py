@@ -1,3 +1,12 @@
+model2template = {
+    'qwen2.5': {
+        "system_format": "<s>[SYS]{content}[/SYS]",
+        "user_format": "<s>{content}[/USER]",
+        "assistant_format": "<s>{content}[/ASSISTANT]",
+    },
+    # 添加其他模型模板
+}
+
 qwen_template = {
     "system_format": "<|im_start|>system\n{content}<|im_end|>\n",
     "user_format": "<|im_start|>user\n{content}<|im_end|>\n<|im_start|>assistant\n",
@@ -94,8 +103,7 @@ model2template = {
     "Qwen/Qwen2-7B-Instruct": qwen_template,
     "Qwen/Qwen2-72B": qwen_template,
     "Qwen/Qwen2-72B-Instruct": qwen_template,
-    "Qwen/Qwen2.5-3B-Instruct":qwen_template,
-    "Qwen/Qwen2.5-3B":qwen_template
+    "Qwen/Qwen2.5-3B":qwen_template,
     # Yi models
     "01-ai/Yi-6B": yi_template,
     "01-ai/Yi-6B-Chat": yi_template,
@@ -234,7 +242,6 @@ model2base_model = {
     "Qwen/Qwen2-7B-Instruct": "qwen1.5",
     "Qwen/Qwen2-72B": "qwen1.5",
     "Qwen/Qwen2-72B-Instruct": "qwen1.5",
-    "Qwen/Qwen2.5-3B":"qwen2.5",
     "Qwen/Qwen2.5-3B":"qwen2.5",
     # Yi models
     "01-ai/Yi-6B": "yi",
