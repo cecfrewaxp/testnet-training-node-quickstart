@@ -94,6 +94,8 @@ model2template = {
     "Qwen/Qwen2-7B-Instruct": qwen_template,
     "Qwen/Qwen2-72B": qwen_template,
     "Qwen/Qwen2-72B-Instruct": qwen_template,
+    "Qwen/Qwen2.5-3B-Instruct":qwen_template,
+    "Qwen/Qwen2.5-3B":qwen_template
     # Yi models
     "01-ai/Yi-6B": yi_template,
     "01-ai/Yi-6B-Chat": yi_template,
@@ -162,6 +164,8 @@ model2size = {
     "Qwen/Qwen2-7B-Instruct": 7_720_000_000,
     "Qwen/Qwen2-72B": 72_000_000_000,
     "Qwen/Qwen2-72B-Instruct": 72_000_000_000,
+    "Qwen/Qwen2.5-3B": 3_000_000_000,
+    "Qwen/Qwen2.5-3B-Instruct":3_000_000_000,
     # Yi models (estimated sizes)
     "01-ai/Yi-6B": 6_000_000_000,
     "01-ai/Yi-6B-Chat": 6_000_000_000,
@@ -230,6 +234,8 @@ model2base_model = {
     "Qwen/Qwen2-7B-Instruct": "qwen1.5",
     "Qwen/Qwen2-72B": "qwen1.5",
     "Qwen/Qwen2-72B-Instruct": "qwen1.5",
+    "Qwen/Qwen2.5-3B":"qwen2.5",
+    "Qwen/Qwen2.5-3B":"qwen2.5",
     # Yi models
     "01-ai/Yi-6B": "yi",
     "01-ai/Yi-6B-Chat": "yi",
