@@ -24,14 +24,20 @@ class LoraTrainingArguments:
     lora_alpha: int
     lora_dropout: int
 
-def validate_base_model(model_id):
-    if model_id not in valid_base_models:
-        raise ValueError(f"Invalid model_id: {model_id}. Expected one of {valid_base_models}.")
+def extract_base_model(model_id):
+    # 提取 base_model
+    base_model = model_id.split('/')[1].split('-')[0]
+    return base_model
+
+def validate_base_model(base_model):
+    if base_model not in valid_base_models:
+        raise ValueError(f"Invalid base_model: {base_model}. Expected one of {valid_base_models}.")
 
 def train_lora(
     model_id: str, context_length: int, training_args: LoraTrainingArguments
 ):
-    validate_base_model(model_id)
+    base_model = extract_base_model(model_id)
+    validate_base_model(base_model)
     assert model_id in model2template, f"model_id {model_id} not supported"
     lora_config = LoraConfig(
         r=training_args.lora_rank,
@@ -103,3 +109,6 @@ def train_lora(
 
     # upload lora weights and tokenizer
     print("Training Completed.")
+
+
+
