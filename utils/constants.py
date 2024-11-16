@@ -1,17 +1,3 @@
-# 确保 model2template 字典包含所有支持的 model_id
-model2template = {
-    'Qwen/Qwen2.5-3B': {
-        "system_format": "<s>[SYS]{content}[/SYS]",
-        "user_format": "<s>{content}[/USER]",
-        "assistant_format": "<s>{content}[/ASSISTANT]",
-    },
-    'Qwen/Qwen2.5-1.5B': {
-        "system_format": "<s>[SYS]{content}[/SYS]",
-        "user_format": "<s>{content}[/USER]",
-        "assistant_format": "<s>{content}[/ASSISTANT]",
-    },
-    # 添加其他模型模板
-}
 qwen_template = {
     "system_format": "<|im_start|>system\n{content}<|im_end|>\n",
     "user_format": "<|im_start|>user\n{content}<|im_end|>\n<|im_start|>assistant\n",
