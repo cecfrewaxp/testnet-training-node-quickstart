@@ -25,8 +25,8 @@ class LoraTrainingArguments:
     lora_dropout: int
 
 def extract_base_model(model_id):
-    # 提取 base_model
-    base_model = model_id.split('/')[1].split('-')[0]
+    # 提取 base_model 并转换为小写
+    base_model = model_id.split('/')[1].split('-')[0].lower()
     return base_model
 
 def validate_base_model(base_model):
@@ -109,6 +109,5 @@ def train_lora(
 
     # upload lora weights and tokenizer
     print("Training Completed.")
-
 
 
