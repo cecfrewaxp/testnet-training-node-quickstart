@@ -4,6 +4,6 @@ Qwen/Qwen2.5-3B:
   num_train_epochs: 0.1
   lora_rank: 1
   lora_alpha: 1
-  lora_dropout: 0.01
+  lora_dropout: 0.05
 
 
