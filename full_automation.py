@@ -48,7 +48,7 @@ if __name__ == "__main__":
                 model_id=model_id,
                 context_length=context_length,
                 training_args=LoraTrainingArguments(**all_training_args[model_id]),
-                revision="v1.0"
+                revision=""
             )
         except RuntimeError as e:
             logger.error(f"Error: {e}")
